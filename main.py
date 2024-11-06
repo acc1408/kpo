@@ -44,7 +44,7 @@ def autoEn(t):
     mapA2["sensorbin"]=sensor.value()
     #print(f"SensorTim= {s//1000} mV")
     if (mapA2["mode"]=="auto"):
-        if (mapA2["sensorbin"]==1):
+        if (mapA2["sensorbin2"]==1):
             mapA2["lamp"]=1
             led.value(1)
         else:
