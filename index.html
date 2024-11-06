@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Умная лампочка </title>
+
+<style>
+.btn{
+min-width: 100px;
+font-size: 12pt;
+}
+
+.lbl{
+font-size: 14pt;
+}
+
+.switch_on
+{
+border: 5px inset; 
+width: 250px;
+padding: 5px 15px;
+/*text-align: center;*/
+}
+
+
+
+
+
+</style>
+
+</head>
+<h3>Управление лампочкой</h3>
+
+<div id="on" hidden>
+	<img src="bulb_on.png">
+	<br>
+</div>
+
+<div id="off" hidden>
+	<img src="bulb_off.png">
+	<br>
+</div>
+
+<div id="auto" hidden>
+	<img src="bulb_blink.png">
+	<br>
+</div>
+
+<p>
+	<button type="button" onclick="lampOff()">отключить</button>
+</p>
+<p>
+	<button type="button" onclick="lampOn()">включить</button>
+</p>
+<p>
+	<button type="button" onclick="lampAuto()">авто</button>
+</p>
+
+<script>
+//document.getElementById('myDiv').style.display = 'block';
+document.getElementById('myDiv').style.display = 'none';
+function lampOn()
+	  {
+		document.getElementById('on').style.display = 'block';
+		document.getElementById('off').style.display = 'none';
+		document.getElementById('auto').style.display = 'none';
+	  }
+function lampOff()
+	  {
+		document.getElementById('on').style.display = 'none';
+		document.getElementById('off').style.display = 'block';
+		document.getElementById('auto').style.display = 'none';
+	  }	  
+function lampAuto()
+	  {
+		document.getElementById('on').style.display = 'none';
+		document.getElementById('off').style.display = 'none';
+		document.getElementById('auto').style.display = 'block';
+	  }	  
+</script >
+
+</html>
