@@ -40,18 +40,21 @@ def autoMode(pin):
  
 def autoEn(t):
     #print("timer1")
-    s=sensorAdc.read_uv()
-    print(f"SensorTim= {s//1000} mV")
+    mapA2["sensoradc"]=sensorAdc.read_uv() // 1000
+    mapA2["sensorbin"]=sensor.value()
+    #print(f"SensorTim= {s//1000} mV")
     if (mapA2["mode"]=="auto"):
-        if (sensor.value()==1):
+        if (mapA2["sensorbin"]==1):
             mapA2["lamp"]=1
             led.value(1)
         else:
             mapA2["lamp"]=0
             led.value(0)
     elif (mapA2["mode"]=="manOn"):
+        mapA2["lamp"]=1
         led.value(1)
     else:
+        mapA2["lamp"]=0
         led.value(0)
     return
    
