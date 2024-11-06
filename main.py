@@ -43,7 +43,7 @@ def autoEn(t):
     s=sensorAdc.read_uv()
     print(f"SensorTim= {s//1000} mV")
     if (mapA2["mode"]=="auto"):
-        if (sensor.value()==1):
+        if (sensor2.value()==1):
             mapA2["lamp"]=1
             led.value(1)
         else:
