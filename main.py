@@ -9,19 +9,19 @@ import deflate, io
 mapA2={ "lamp":0, \
         "sensoradc":0, \
         "sensorbin":0, \
-        "mode":"manOff"}
+        "mode":"man"}
 
 #---------------------------
 # Обработчик прерывания нажатия кнопки включения
 def ledOn(pin):
-    mapA2["mode"]="manOn"
+    mapA2["mode"]="man"
     mapA2["lamp"]=1
     led.value(1)
     return
 #-------------------------------------------------
 # обработчик кнопки выключения
 def ledOff(pin):
-    mapA2["mode"]="manOff"
+    mapA2["mode"]="man"
     mapA2["lamp"]=0
     led.value(0)
     return
@@ -50,12 +50,8 @@ def autoEn(t):
         else:
             mapA2["lamp"]=0
             led.value(0)
-    elif (mapA2["mode"]=="manOn"):
-        mapA2["lamp"]=1
-        led.value(1)
-    else:
-        mapA2["lamp"]=0
-        led.value(0)
+    elif (mapA2["mode"]=="man"):
+        led.value( mapA2["lamp"] )
     return
    
     
@@ -186,7 +182,10 @@ if __name__ == "__main__":
                 mapA2send=json.loads(requestJSON[1])
                 print("Приняты данные для отправки")
                 #print(mapA2send)
-                
+                mapA2["mode"]=mapA2send["mode"]
+                if (mapA2["mode"]=="man"):
+                    mapA2["lamp"]=mapA2send["lamp"]
+                    led.value( mapA2["lamp"] )
                 st=json.dumps(mapA2)
             # отправка данных
             if (len(st)>0):
