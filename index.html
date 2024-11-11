@@ -94,7 +94,7 @@ text-align: center;
         "sensoradc":0, 
         "sensorbin":0, 
         "mode":"manOff"};
-
+	let count=2000;
 	var xhr=new XMLHttpRequest();
 	var xhrRead=new XMLHttpRequest();
 	function lampOn()
@@ -148,6 +148,7 @@ text-align: center;
 			 {  
 				var xhrResult = xhrRead.responseText;
 				mapA2=JSON.parse(xhrResult);
+				count=2000;
 				//updateData();
 				console.log(mapA2);
 				document.getElementById("bright").setAttribute("value",  mapA2['sensoradc']);
@@ -176,10 +177,26 @@ text-align: center;
 						lampAuto_off();
 				}
 			 }  
-			}
-		xhrRead.send(); 
+			}	
+		xhrRead.send();
+			
 	}
+	
 	setInterval(readData, 1000);
+	
+	function checkDisconnect()
+	{
+		if (count)
+		{
+			count=count-500;
+		}
+		if (count==0)
+		{
+			lamp_noconnect();
+		}
+	}
+	
+	setInterval(checkDisconnect, 500);
 	
 	function sendData(mode,lamp)
 {
@@ -203,7 +220,7 @@ text-align: center;
 		{  
 			var xhrResult2 = xhrRead.responseText;
 			mapA2=JSON.parse(xhrResult2);
-			updateData();
+			
 		}
 	}
 	xhrRead.send();
